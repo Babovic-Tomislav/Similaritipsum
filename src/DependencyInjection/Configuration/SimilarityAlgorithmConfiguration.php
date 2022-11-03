@@ -9,7 +9,7 @@ use Symfony\Component\Config\Definition\ConfigurationInterface;
 class SimilarityAlgorithmConfiguration implements ConfigurationInterface
 {
 
-    public function getConfigTreeBuilder()
+    public function getConfigTreeBuilder(): TreeBuilder
     {
         $treeBuilder = new TreeBuilder('app');
 
@@ -23,21 +23,16 @@ class SimilarityAlgorithmConfiguration implements ConfigurationInterface
     {
         $node->children()
              ->arrayNode('similarity_algorithms')
-                 ->isRequired()
-                    ->children()
-                        ->arrayNode('algorithms')
-                        ->useAttributeAsKey('identifier')
-                            ->arrayPrototype()
-                                 ->canBeUnset(true)
-                                 ->children()
-                                     ->scalarNode('algorithm')->isRequired()->end()
-                                ->end()
-                            ->end()
-                        ->end()
-                    ->end()
-                ->end()
-             ->end()
-        ->end();
+                 ->useAttributeAsKey('identifier')
+                 ->arrayPrototype()
+                     ->children()
+                         ->scalarNode('class')->end()
+                         ->scalarNode('name')->end()
+                         ->scalarNode('description')->end()
+                     ->end()
+                 ->end()
+                 ->end()
+             ->end();
     }
 }
 

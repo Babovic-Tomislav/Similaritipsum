@@ -1,0 +1,6 @@
+app:
+    similarity_algorithms:
+        wip:
+            class: 'App\SimilarityAlgorithms\HammingAlgorithm'
+            name: 'Hamming'
+            description: 'Hamming distance is a metric for comparing two binary data strings. Bigger number means that strings are more different'

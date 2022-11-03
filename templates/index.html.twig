@@ -1,0 +1,87 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1 style="width:50%; margin: auto; padding-top: 50px; text-align: center">Similaritipsum</h1>
+    <div style="width:50%; margin: auto; padding-top: 50px">
+        {{ form_start(form) }}
+        {{ form_errors(form) }}
+
+        <div class="form-row">
+            <div class="col">
+                {{ form_row(form.text1) }}
+
+            </div>
+            <div class="col" >
+                {{ form_row(form.additional_text1) }}
+            </div>
+        </div>
+        <div class="form-row"style="padding-top: 25px">
+            <div class="col">
+                {{ form_row(form.text2) }}
+
+            </div>
+            <div class="col" >
+                {{ form_row(form.additional_text2) }}
+            </div>
+        </div>
+        <div class="form-row " style="text-align: center; padding-top: 50px">
+            <div class="col" >
+                {{ form_row(form.algorithm) }}
+            </div>
+        </div>
+        <div class="form-row" style="text-align: center; padding-top: 50px">
+            <div class="col" >
+                {{ form_row(form.generateTexts) }}
+            </div>
+            <div class="col" >
+                {{ form_row(form.submit) }}
+            </div>
+        </div>
+        <div class="form-row " style=" padding-top: 100px">
+            <div class="col" >
+                {{ form_label(form.result) }}
+                {{ form_widget(form.result, {value : result is defined ? result : ''}) }}
+            </div>
+        </div>
+        {{ form_end(form) }}
+
+    </div>
+
+{#    Should be inside its own file#}
+    <script>
+        $(".generate-text").click(function(){
+            $.ajax({
+                url: 'generate-text',
+                type: 'GET',
+                dataType: 'json',
+                success : function(response) {
+                    document.querySelector('textarea[name="similaritipsum_similarity[text1]"]').value = response.data[0];
+                    document.querySelector('textarea[name="similaritipsum_similarity[additional_text1]"]').value = response.data[1];
+                    document.querySelector('textarea[name="similaritipsum_similarity[text2]"]').value = response.data[2];
+                    document.querySelector('textarea[name="similaritipsum_similarity[additional_text2]"]').value = response.data[3];
+                },
+                error : function(error) {
+                    alert('Error: '+ error.responseJSON.msg);
+                }
+            });
+        });
+
+        $('form[name="similaritipsum_similarity"]').submit(function(event) {
+            event.preventDefault();
+
+            $.ajax({
+                url: '',
+                type: 'POST',
+                dataType: 'json',
+                data: $(this).serialize(),
+                success : function(response) {
+                    document.querySelector('textarea[name="similaritipsum_similarity[result]"]').value = response.data;
+                },
+                error : function(error) {
+                    alert('Error: '+ error.responseJSON.msg);
+                }
+            });
+        });
+
+    </script>
+{% endblock %}
