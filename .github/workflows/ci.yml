@@ -17,5 +17,7 @@ jobs:
               run: docker compose build  --build-arg USER_GID=$(id -u) --build-arg USER_UID=$(id -g)
             - name: Start services
               run: docker compose up -d
+            - name: Install project
+              run: composer install
             - name: Check HTTP reachability
               run: curl http://localhost:8050
