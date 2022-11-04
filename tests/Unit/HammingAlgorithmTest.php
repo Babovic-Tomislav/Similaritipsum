@@ -52,7 +52,7 @@ class HammingAlgorithmTest extends TestCase
             'text2' => 'nine'
         ]);
 
-        $this->assertNotEquals(2, $hammingAlgorithm->compare());
+        $this->assertEquals(2, $hammingAlgorithm->compare());
     }
 }
 
