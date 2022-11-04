@@ -18,6 +18,8 @@ jobs:
             - name: Start services
               run: docker compose up -d
             - name: Install project
-              run: composer install
+              run: docker exec similaritipsum-php-1 composer install
+            - name: Run tests
+              run: docker exec similaritipsum-php-1 bin/phpunit
             - name: Check HTTP reachability
               run: curl http://localhost:8050
