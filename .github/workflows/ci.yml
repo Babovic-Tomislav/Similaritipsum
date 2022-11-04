@@ -15,10 +15,6 @@ jobs:
               run: docker compose pull
             - name: Build services
               run: bash install
-#            - name: Start services
-#              run: docker compose up -d
-#            - name: Install project
-#              run: docker exec -u $(id -u) similaritipsum-php-1  composer install
             - name: Run tests
               run: docker exec similaritipsum-php-1 bin/phpunit
             - name: Check HTTP reachability
