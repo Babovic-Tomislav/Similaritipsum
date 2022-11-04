@@ -1,0 +1,5 @@
+#!/bin/bash
+
+docker compose build  --build-arg USER_GID=$(id -u) --build-arg USER_UID=$(id -g)
+docker compose up -d
+docker exec -u $(id -u) similaritipsum-php-1  composer install
