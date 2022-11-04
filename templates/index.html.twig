@@ -4,29 +4,37 @@
     <h1 style="width:50%; margin: auto; padding-top: 50px; text-align: center">Similaritipsum</h1>
     <div style="width:50%; margin: auto; padding-top: 50px">
         {{ form_start(form) }}
-        {{ form_errors(form) }}
+{#        {{ form_errors(form) }}#}
 
         <div class="form-row">
             <div class="col">
-                {{ form_row(form.text1) }}
-
+                {{ form_label(form.text1) }}
+                {{ form_widget(form.text1) }}
+                {{ form_errors(form.text1) }}
             </div>
             <div class="col" >
-                {{ form_row(form.additional_text1) }}
+                {{ form_label(form.additional_text1) }}
+                {{ form_widget(form.additional_text1) }}
+                {{ form_errors(form.additional_text1) }}
             </div>
         </div>
         <div class="form-row"style="padding-top: 25px">
             <div class="col">
-                {{ form_row(form.text2) }}
-
+                {{ form_label(form.text2) }}
+                {{ form_widget(form.text2) }}
+                {{ form_errors(form.text2) }}
             </div>
             <div class="col" >
-                {{ form_row(form.additional_text2) }}
+                {{ form_label(form.additional_text2) }}
+                {{ form_widget(form.additional_text2) }}
+                {{ form_errors(form.additional_text2) }}
             </div>
         </div>
         <div class="form-row " style="text-align: center; padding-top: 50px">
             <div class="col" >
-                {{ form_row(form.algorithm) }}
+                {{ form_label(form.algorithm) }}
+                {{ form_widget(form.algorithm) }}
+                {{ form_errors(form.algorithm) }}
             </div>
         </div>
         <div class="form-row" style="text-align: center; padding-top: 50px">
@@ -39,8 +47,7 @@
         </div>
         <div class="form-row " style=" padding-top: 100px">
             <div class="col" >
-                {{ form_label(form.result) }}
-                {{ form_widget(form.result, {value : result is defined ? result : ''}) }}
+                {{ form_widget(form.result, {value : result is defined and result is not empty ? result : ''}) }}
             </div>
         </div>
         {{ form_end(form) }}

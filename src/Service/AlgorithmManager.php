@@ -12,6 +12,13 @@ class AlgorithmManager
     {
     }
 
+    /**
+     * @param string $identifier
+     * @return SimilarityAlgorithm
+     * @throws AlgorithmNotFound
+     * @throws \Psr\Container\ContainerExceptionInterface
+     * @throws \Psr\Container\NotFoundExceptionInterface
+     */
     public function getAlgorithm(string $identifier): SimilarityAlgorithm
     {
         $serviceName = $identifier . '.similarity_algorithm';

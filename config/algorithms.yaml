@@ -4,3 +4,7 @@ app:
             class: 'App\SimilarityAlgorithms\HammingAlgorithm'
             name: 'Hamming'
             description: 'Hamming distance is a metric for comparing two binary data strings. Bigger number means that strings are more different'
+### You can add new algorithms here to be picked by option provider for algorithm select
+### I went with this way of configurating  available algorithms so that that part of the project could be seperated into the bundle and used in other projects.
+### We could have few project requesting similarity algorithms but having few base algorithms and others that aren't 
+### same on all projects, that way we can include the bundle with base algorithms and add specific ones to every project

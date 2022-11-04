@@ -4,6 +4,9 @@ namespace App\SimilarityAlgorithms;
 
 class HammingAlgorithm extends SimilarityAlgorithm
 {
+    /**
+     * @return float
+     */
     public function compare(): float
     {
         if (!$this->textNormalized) {

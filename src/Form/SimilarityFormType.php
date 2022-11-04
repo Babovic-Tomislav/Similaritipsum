@@ -9,6 +9,7 @@ use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Component\Validator\Constraints\NotBlank;
 
 class SimilarityFormType extends AbstractType
 {
@@ -20,11 +21,14 @@ class SimilarityFormType extends AbstractType
     {
         $builder
             ->add('text1', TextareaType::class, [
-                'required' => false,
+                'required' => true,
                 'label' => 'Text1',
                 'attr' => [
                     'help' => 'test',
                     'class' => ' form-control'
+                ],
+                'constraints' => [
+                    new NotBlank()
                 ],
                 'label_attr' => [
                     'style' => 'text-align: center; width: 100%'
@@ -41,10 +45,13 @@ class SimilarityFormType extends AbstractType
                 ]
             ])
             ->add('text2', TextareaType::class, [
-                'required' => false,
+                'required' => true,
                 'attr' => [
                     'help' => 'test',
                     'class' => ' form-control'
+                ],
+                'constraints' => [
+                    new NotBlank()
                 ],
                 'label_attr' => [
                     'style' => 'text-align: center; width: 100%'
@@ -61,7 +68,7 @@ class SimilarityFormType extends AbstractType
                 ]
             ])
             ->add('algorithm', ChoiceType::class, [
-                'required' => false,
+                'required' => true,
                 'choices' => array_flip($this->algorithmOptionsProvider->getAlgorithms()),
                 'choice_attr' => function($key) {
                     return ['title' => $this->algorithmOptionsProvider->getAlgorithmDescriptionBasedOnKey($key), 'class' => 'custom-control-input'];
